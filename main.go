@@ -30,7 +30,7 @@ func init() {
 
 func shellEncodeOrDie(key, value string, output io.Writer){
 	if value == ""{
-		log.Info("Empty tag found for value %v, exiting",key)
+		log.Infof("Empty tag found for value %v, exiting",key)
 		os.Exit(1)
 	} else {
 		shellEncode(key, value, output)

@@ -103,6 +103,10 @@ func main() {
 	for _, res := range resp.Reservations {
 		for _, inst := range res.Instances {
 			log.Infof("Instance ID: %s", *inst.InstanceId)
+			if *missing && len(inst.Tags) == 0 {
+				log.Info("No tags for instance found, exiting")
+				os.Exit(1)
+			}
 			for _, tag := range inst.Tags {
 				encodeFunc("Tag_"+*tag.Key, *tag.Value, writer)
 			}
